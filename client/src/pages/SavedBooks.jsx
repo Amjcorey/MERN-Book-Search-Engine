@@ -1,12 +1,19 @@
-import React from "react";
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
 // import { useState, useEffect } from 'react';
-import { Container, Card, Button, Row, Col } from "react-bootstrap";
+import {
+  Container,
+  Card,
+  Button,
+  Row,
+  Col
+} from 'react-bootstrap';
 
-import Auth from "../utils/auth";
-import { removeBookId } from "../utils/localStorage";
+import Auth from '../utils/auth';
+import { removeBookId } from '../utils/localStorage';
 import { useMutation, useQuery } from "@apollo/client";
 import { REMOVE_BOOK } from "../utils/mutations";
-import { GET_ME } from "../utils/queries";
+import { GET_ME } from '../utils/queries';
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
@@ -53,12 +60,12 @@ const SavedBooks = () => {
       // const response = await deleteBook(bookId, token);
       const response = await removeBook({
         variables: {
-          bookId: bookId,
+          bookId: bookId
         },
       });
 
       if (!response) {
-        throw new Error("something went wrong!");
+        throw new Error('something went wrong!');
       }
 
       // upon success, remove book's id from localStorage
@@ -83,9 +90,8 @@ const SavedBooks = () => {
       <Container>
         <h2 className="pt-5">
           {userData?.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${
-                userData?.savedBooks.length === 1 ? "book" : "books"
-              }:`
+            ? `Viewing ${userData.savedBooks.length} saved ${userData?.savedBooks.length === 1 ? "book" : "books"
+            }:`
             : "You have no saved books!"}
         </h2>
         <Row>
